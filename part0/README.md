@@ -1,9 +1,8 @@
-# part 0
+# [Fullstack Open 2020](https://fullstackopen.com/en/about)
+## [Part 0](https://fullstackopen.com/en/part0)
+## [Exercises](https://fullstackopen.com/en/part0/fundamentals_of_web_apps#exercises-0-1-0-6)
 
-** exercise 0.4: new note **
+[**0.4: new note**](./exercise0_4.png)
 
-* In chapter Loading a page containing JavaScript - revised the chain of events caused by opening the page https://studies.cs.helsinki.fi/exampleapp/notes is depicted as a sequence diagram
 
-Create a similar diagram depicting the situation where the user creates a new note on page https://studies.cs.helsinki.fi/exampleapp/notes by writing something into the text field and clicking the submit button.
 
-If necessary, show operations on the browser or on the server as comments on the diagram. *
