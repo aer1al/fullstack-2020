@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 const Heading = ({ title }) => <h1>{title}</h1>;
+
 const Button = ({ text, handleClick }) => (
   <button onClick={handleClick}>{text}</button>
 );
