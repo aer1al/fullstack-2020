@@ -18,6 +18,14 @@ const App = () => {
     personService.getAll().then((initial) => setPersons(initial));
   }, []);
 
+  const showNotif = (type, message) => {
+    setNotification(type);
+    setMessage(message);
+    setTimeout(() => {
+      setMessage(null);
+    }, 1800);
+  };
+
   const addPerson = (event) => {
     event.preventDefault();
 
@@ -37,13 +45,10 @@ const App = () => {
               personService.getAll().then((initial) => setPersons(initial));
               setNewName("");
               setNewNumber("");
-              setNotification("message");
-              setMessage(
+              showNotif(
+                "message",
                 `Added new number (${person.name} : ${person.number})`
               );
-              setTimeout(() => {
-                setMessage(null);
-              }, 5000);
             })
           : alert(`${person.name}'s details were not updated`)
         : alert(`${person.name} is already added to the phonebook`);
@@ -52,11 +57,7 @@ const App = () => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
         setNewNumber("");
-        setNotification("message");
-        setMessage(`Added ${newPerson.name}`);
-        setTimeout(() => {
-          setMessage(null);
-        }, 5000);
+        showNotif("message", `Added ${newPerson.name}`);
       });
     }
   };
@@ -66,6 +67,7 @@ const App = () => {
       .remove(person.id)
       .then(() => {
         setPersons(persons.filter((newPerson) => newPerson.id !== person.id));
+        showNotif("error", `deleted ${person.name}`);
       })
       .catch(() => {
         setMessage(`${person.name} was already removed from the phonebook`);
