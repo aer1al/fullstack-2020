@@ -47,7 +47,7 @@ const App = () => {
               setNewNumber("");
               showNotif(
                 "message",
-                `Added new number (${person.name} : ${person.number})`
+                `Added new number (${newPerson.name} : ${newPerson.number})`
               );
             })
           : alert(`${person.name}'s details were not updated`)
@@ -63,20 +63,21 @@ const App = () => {
   };
 
   const deletePerson = (person) => {
-    personService
-      .remove(person.id)
-      .then(() => {
-        setPersons(persons.filter((newPerson) => newPerson.id !== person.id));
-        showNotif("error", `deleted ${person.name}`);
-      })
-      .catch(() => {
-        setMessage(`${person.name} was already removed from the phonebook`);
-        setTimeout(() => {
-          setMessage(null);
-        }, 5000);
-        setPersons(persons.filter((p) => p.id !== person.id));
-        setNotification("error");
-      });
+    if (window.confirm(`Delete ${person.name}?`)) {
+      personService
+        .remove(person.id)
+        .then(() => {
+          showNotif("error", `deleted ${person.name}`);
+        })
+        .catch(() => {
+          setMessage(`${person.name} was already removed from the phonebook`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 5000);
+          setNotification("error");
+        });
+      setPersons(persons.filter((newPerson) => newPerson.id !== person.id));
+    }
   };
 
   return (
