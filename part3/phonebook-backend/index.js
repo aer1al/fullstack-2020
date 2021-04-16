@@ -64,7 +64,8 @@ app.get("/info", (req, res) => {
 
 app.delete("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
-  persons.filter((person) => person.id !== id);
+  console.log(id);
+  persons = persons.filter((person) => person.id !== id);
   res.status(204).end();
 });
 
@@ -115,10 +116,9 @@ app.post("/api/persons", (req, res) => {
   res.json(newPerson);
 });
 
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknown endpoint" });
 };
-
 app.use(unknownEndpoint);
 
 const PORT = process.env.PORT || 3001;
